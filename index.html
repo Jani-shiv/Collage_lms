@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe - Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="logo">
+                    <h2>John Doe</h2>
+                </div>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Hello, I'm <span class="highlight">John Doe</span></h1>
+                    <p class="hero-subtitle">Full Stack Developer & UI/UX Designer</p>
+                    <p class="hero-description">
+                        I create beautiful and functional web applications with passion for clean code and elegant design.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                        <a href="#projects" class="btn btn-secondary">View My Work</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="profile-img">
+                        <img src="https://via.placeholder.com/300x300/4f46e5/ffffff?text=JD" alt="John Doe">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            I'm a passionate full-stack developer with 3+ years of experience in creating 
+                            web applications. I love turning complex problems into simple, beautiful designs.
+                        </p>
+                        <p>
+                            When I'm not coding, you can find me exploring new technologies, reading tech blogs, 
+                            or enjoying a good cup of coffee while brainstorming my next project.
+                        </p>
+                        <div class="about-stats">
+                            <div class="stat">
+                                <h3>50+</h3>
+                                <p>Projects Completed</p>
+                            </div>
+                            <div class="stat">
+                                <h3>3+</h3>
+                                <p>Years Experience</p>
+                            </div>
+                            <div class="stat">
+                                <h3>20+</h3>
+                                <p>Happy Clients</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills">
+            <div class="container">
+                <h2 class="section-title">Skills & Technologies</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <i class="fab fa-html5"></i>
+                        <h3>HTML5</h3>
+                        <p>Semantic markup and modern HTML practices</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-css3-alt"></i>
+                        <h3>CSS3</h3>
+                        <p>Responsive design and modern CSS features</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-js-square"></i>
+                        <h3>JavaScript</h3>
+                        <p>ES6+ and modern JavaScript development</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-react"></i>
+                        <h3>React</h3>
+                        <p>Component-based UI development</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-node-js"></i>
+                        <h3>Node.js</h3>
+                        <p>Server-side JavaScript development</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-database"></i>
+                        <h3>Databases</h3>
+                        <p>MongoDB, PostgreSQL, and MySQL</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="https://via.placeholder.com/400x250/6366f1/ffffff?text=E-Commerce" alt="E-Commerce Project">
+                        </div>
+                        <div class="project-content">
+                            <h3>E-Commerce Platform</h3>
+                            <p>A full-featured e-commerce website built with React and Node.js</p>
+                            <div class="project-tech">
+                                <span>React</span>
+                                <span>Node.js</span>
+                                <span>MongoDB</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn btn-small">Live Demo</a>
+                                <a href="#" class="btn btn-small btn-outline">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="https://via.placeholder.com/400x250/8b5cf6/ffffff?text=Weather+App" alt="Weather App">
+                        </div>
+                        <div class="project-content">
+                            <h3>Weather App</h3>
+                            <p>A responsive weather application with real-time data and forecasts</p>
+                            <div class="project-tech">
+                                <span>JavaScript</span>
+                                <span>API</span>
+                                <span>CSS3</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn btn-small">Live Demo</a>
+                                <a href="#" class="btn btn-small btn-outline">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="https://via.placeholder.com/400x250/10b981/ffffff?text=Task+Manager" alt="Task Manager">
+                        </div>
+                        <div class="project-content">
+                            <h3>Task Manager</h3>
+                            <p>A productivity app for managing tasks and projects efficiently</p>
+                            <div class="project-tech">
+                                <span>React</span>
+                                <span>Firebase</span>
+                                <span>Material-UI</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn btn-small">Live Demo</a>
+                                <a href="#" class="btn btn-small btn-outline">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Let's work together!</h3>
+                        <p>I'm always interested in new opportunities and exciting projects.</p>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>john.doe@example.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <span>+1 (555) 123-4567</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>New York, NY</span>
+                            </div>
+                        </div>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 John Doe. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

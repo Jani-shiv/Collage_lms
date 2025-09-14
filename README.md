@@ -1,4 +1,223 @@
-# College Learning Management System (LMS)
+# 🎓 College LMS - Learning Management System
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
+[![React](https://img.shields.io/badge/React-18+-blue.svg)](https://reactjs.org/)
+[![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+
+A modern, full-stack Learning Management System built with React, Node.js, and SQLite. Designed for educational institutions to manage courses, assignments, and student-teacher interactions.
+
+## 🌟 Features
+
+### 👥 User Management
+- **Role-based Authentication** (Admin, Teacher, Student)
+- **JWT-based Security** with bcrypt password hashing
+- **User Registration & Login** with validation
+- **Profile Management** for all user types
+
+### 📚 Course Management
+- **Course Creation & Management** by teachers and admins
+- **Course Enrollment** for students
+- **Course Dashboard** with real-time updates
+- **Assignment Management** with due dates
+
+### 🎯 Assignment System
+- **Assignment Creation** with detailed descriptions
+- **File Submission** support
+- **Grade Management** by teachers
+- **Submission Tracking** and deadlines
+
+### 🎨 Modern UI/UX
+- **Responsive Design** with Tailwind CSS
+- **Dark/Light Theme** support
+- **Interactive Dashboard** for all user roles
+- **Real-time Notifications** and updates
+
+### 🚀 Performance & Deployment
+- **Docker Support** for easy deployment
+- **Nginx Integration** for production
+- **SQLite Database** for lightweight deployment
+- **One-command Startup** for development
+
+## 🛠️ Technology Stack
+
+### Frontend
+- **React 18** with hooks and context
+- **Vite** for fast development and building
+- **Tailwind CSS** for styling
+- **React Router** for navigation
+- **Axios** for API communication
+
+### Backend
+- **Node.js** with Express.js framework
+- **Sequelize ORM** for database management
+- **JWT Authentication** with middleware
+- **bcrypt** for password hashing
+- **Express Validator** for input validation
+
+### Database
+- **SQLite** for lightweight deployment
+- **Sequelize Models** for data relationships
+- **Database Seeders** for demo data
+
+### DevOps
+- **Docker & Docker Compose** for containerization
+- **Nginx** for reverse proxy and static file serving
+- **GitHub Actions** ready for CI/CD
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+- Git
+
+### Development Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Jani-shiv/Collage_lms.git
+   cd Collage_lms
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start the application**
+   ```bash
+   npm start
+   ```
+
+4. **Access the application**
+   - Frontend: http://localhost:3000
+   - Backend API: http://localhost:5000
+
+### 🐳 Docker Deployment
+
+1. **Build and run with Docker Compose**
+   ```bash
+   docker-compose up -d --build
+   ```
+
+2. **Access the application**
+   - Application: http://localhost
+   - API: http://localhost/api
+
+## 👤 Demo Accounts
+
+| Role | Email | Password |
+|------|-------|----------|
+| **Admin** | admin@example.com | admin123 |
+| **Teacher** | teacher@example.com | teacher123 |
+| **Student** | student@example.com | student123 |
+
+## 📁 Project Structure
+
+```
+college-lms/
+├── 📁 frontend/                # React frontend application
+│   ├── 📁 src/
+│   │   ├── 📁 components/      # Reusable UI components
+│   │   ├── 📁 pages/           # Page components
+│   │   ├── 📁 context/         # React context providers
+│   │   ├── 📁 services/        # API service functions
+│   │   └── 📄 App.jsx          # Main application component
+│   ├── 📁 public/              # Static assets
+│   └── 📄 package.json
+├── 📁 backend/                 # Node.js/Express backend
+│   ├── 📁 controllers/         # Route controllers
+│   ├── 📁 models/              # Database models
+│   ├── 📁 routes/              # API routes
+│   ├── 📁 middleware/          # Custom middleware
+│   ├── 📁 config/              # Configuration files
+│   ├── 📁 database/            # Database files and migrations
+│   ├── 📁 seeders/             # Database seeders
+│   └── 📄 server.js            # Express server entry point
+├── 📁 components/              # Shared UI components (shadcn/ui)
+├── 📄 docker-compose.yml       # Docker composition
+├── 📄 nginx.conf              # Nginx configuration
+├── 📄 DEPLOYMENT.md           # Deployment instructions
+└── 📄 CONTRIBUTING.md         # Contribution guidelines
+```
+
+## 🔧 API Endpoints
+
+### Authentication
+- `POST /api/auth/login` - User login
+- `POST /api/auth/register` - User registration
+- `GET /api/auth/me` - Get current user
+
+### Users
+- `GET /api/users` - Get all users (Admin only)
+- `GET /api/users/:id` - Get user by ID
+- `PUT /api/users/:id` - Update user
+
+### Courses
+- `GET /api/courses` - Get all courses
+- `POST /api/courses` - Create course (Teacher/Admin)
+- `GET /api/courses/:id` - Get course details
+- `PUT /api/courses/:id` - Update course
+
+## 🌐 Production Deployment
+
+### RHEL 9 + Docker + Nginx
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed production deployment instructions.
+
+### Environment Variables
+
+Create `.env` files in both frontend and backend directories:
+
+**Backend (.env)**
+```env
+NODE_ENV=production
+JWT_SECRET=your-super-secret-jwt-key
+DB_PATH=./database/lms.db
+PORT=5000
+```
+
+**Frontend (.env)**
+```env
+VITE_API_URL=http://your-domain.com/api
+```
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+
+### How to Contribute
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [React](https://reactjs.org/) - Frontend framework
+- [Node.js](https://nodejs.org/) - Backend runtime
+- [Express.js](https://expressjs.com/) - Web framework
+- [Tailwind CSS](https://tailwindcss.com/) - CSS framework
+- [Sequelize](https://sequelize.org/) - ORM for Node.js
+
+## 📞 Support
+
+- 🐛 **Bug Reports**: [Create an issue](https://github.com/Jani-shiv/Collage_lms/issues)
+- 💡 **Feature Requests**: [Create an issue](https://github.com/Jani-shiv/Collage_lms/issues)
+- 💬 **Questions**: [Discussions](https://github.com/Jani-shiv/Collage_lms/discussions)
+
+---
+
+<div align="center">
+  <strong>⭐ Star this repository if you find it helpful! ⭐</strong>
+</div>
 
 A full-stack Learning Management System built with React, Node.js, Express, MySQL, and Sequelize. This system provides role-based access for students, teachers, and administrators to manage courses, assignments, and academic activities.
 

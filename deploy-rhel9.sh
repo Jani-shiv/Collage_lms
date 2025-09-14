@@ -1,32 +1,150 @@
 #!/bin/bash
 
-# College LMS Deployment Script for RHEL 9
-# Run this script as root to deploy College LMS with Docker and Nginx
+# =================================================================
+# College LMS Deployment Script for Red Hat Enterprise Linux 9
+# =================================================================
+# 
+# Description: Automated deployment script for College LMS
+# Author: College LMS Team
+# Version: 2.0.0
+# Compatible: RHEL 9, CentOS Stream 9, Rocky Linux 9, AlmaLinux 9
+# 
+# Usage: 
+#   curl -sSL https://raw.githubusercontent.com/Jani-shiv/Collage_lms/main/deploy-rhel9.sh | sudo bash
+#   or
+#   sudo bash deploy-rhel9.sh
+# 
+# =================================================================
 
-set -e  # Exit on any error
+set -euo pipefail  # Exit on any error, undefined variables, and pipe failures
+
+# Script configuration
+SCRIPT_VERSION="2.0.0"
+PROJECT_NAME="College LMS"
+REPO_URL="https://github.com/Jani-shiv/Collage_lms.git"
+INSTALL_DIR="/opt/Collage_lms"
+LOG_FILE="/var/log/college-lms-deploy.log"
+DOCKER_COMPOSE_VERSION="v2.27.0"
 
 # Colors for output
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+readonly RED='\033[0;31m'
+readonly GREEN='\033[0;32m'
+readonly YELLOW='\033[1;33m'
+readonly BLUE='\033[0;34m'
+readonly PURPLE='\033[0;35m'
+readonly CYAN='\033[0;36m'
+readonly NC='\033[0m' # No Color
+
+# Logging function
+log() {
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" >> "$LOG_FILE"
+}
 
 # Function to print colored output
+print_header() {
+    echo -e "${PURPLE}╔══════════════════════════════════════════════════════════════╗${NC}"
+    echo -e "${PURPLE}║                    $1                    ║${NC}"
+    echo -e "${PURPLE}╚══════════════════════════════════════════════════════════════╝${NC}"
+    log "HEADER: $1"
+}
+
 print_status() {
     echo -e "${BLUE}🔄 $1${NC}"
+    log "STATUS: $1"
 }
 
 print_success() {
     echo -e "${GREEN}✅ $1${NC}"
+    log "SUCCESS: $1"
 }
 
 print_warning() {
     echo -e "${YELLOW}⚠️  $1${NC}"
+    log "WARNING: $1"
 }
 
 print_error() {
     echo -e "${RED}❌ $1${NC}"
+    log "ERROR: $1"
+}
+
+print_info() {
+    echo -e "${CYAN}ℹ️  $1${NC}"
+    log "INFO: $1"
+}
+
+# Error handling
+error_exit() {
+    print_error "$1"
+    print_error "Deployment failed! Check log file: $LOG_FILE"
+    exit 1
+}
+
+# Trap to handle script interruption
+trap 'error_exit "Script interrupted by user"' INT TERM
+
+# Pre-flight checks
+preflight_checks() {
+    print_header "PRE-FLIGHT CHECKS"
+    
+    # Check if running as root
+    if [ "$EUID" -ne 0 ]; then
+        error_exit "Please run as root (use sudo)"
+    fi
+    print_success "Running as root"
+    
+    # Check OS compatibility
+    if [ ! -f /etc/redhat-release ]; then
+        error_exit "This script is designed for RHEL-based systems only"
+    fi
+    
+    local os_version=$(cat /etc/redhat-release)
+    print_info "Detected OS: $os_version"
+    
+    # Check internet connectivity
+    if ! curl -s --head http://www.google.com > /dev/null; then
+        error_exit "No internet connection detected"
+    fi
+    print_success "Internet connectivity verified"
+    
+    # Check available disk space (minimum 5GB)
+    local available_space=$(df /opt | awk 'NR==2 {print $4}')
+    if [ "$available_space" -lt 5242880 ]; then  # 5GB in KB
+        error_exit "Insufficient disk space. At least 5GB required in /opt"
+    fi
+    print_success "Sufficient disk space available"
+    
+    # Create log file
+    touch "$LOG_FILE"
+    print_success "Log file created: $LOG_FILE"
+}
+
+# Banner
+show_banner() {
+    clear
+    echo -e "${PURPLE}"
+    cat << "EOF"
+╔══════════════════════════════════════════════════════════════════════╗
+║                                                                      ║
+║   ██████╗ ██████╗ ██╗     ██╗     ███████╗ ██████╗ ███████╗         ║
+║  ██╔════╝██╔═══██╗██║     ██║     ██╔════╝██╔════╝ ██╔════╝         ║
+║  ██║     ██║   ██║██║     ██║     █████╗  ██║  ███╗█████╗           ║
+║  ██║     ██║   ██║██║     ██║     ██╔══╝  ██║   ██║██╔══╝           ║
+║  ╚██████╗╚██████╔╝███████╗███████╗███████╗╚██████╔╝███████╗         ║
+║   ╚═════╝ ╚═════╝ ╚══════╝╚══════╝╚══════╝ ╚═════╝ ╚══════╝         ║
+║                                                                      ║
+║                    Learning Management System                        ║
+║                         Deployment Script                            ║
+║                          Version 2.0.0                              ║
+║                                                                      ║
+╚══════════════════════════════════════════════════════════════════════╝
+EOF
+    echo -e "${NC}"
+    echo ""
+    print_info "Welcome to $PROJECT_NAME Automated Deployment"
+    print_info "Script Version: $SCRIPT_VERSION"
+    print_info "Target Platform: Red Hat Enterprise Linux 9"
+    echo ""
 }
 
 # Check if running as root
@@ -35,7 +153,11 @@ if [ "$EUID" -ne 0 ]; then
     exit 1
 fi
 
-print_status "Starting College LMS deployment on RHEL 9..."
+# Initialize deployment
+show_banner
+preflight_checks
+
+print_header "STARTING DEPLOYMENT PROCESS"
 
 # Update system
 print_status "Updating system packages..."
